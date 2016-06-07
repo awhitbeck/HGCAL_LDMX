@@ -29,7 +29,7 @@ using namespace std;
 
 //
 
-DetectorConstruction::DetectorConstruction(G4int ver, G4int mod,std::string steelThick) :
+DetectorConstruction::DetectorConstruction(G4int ver, G4int mod,G4double steelThick) :
 		version_(ver), model_(mod) {
 	initLayer(0);
 	steelThickness(steelThick);

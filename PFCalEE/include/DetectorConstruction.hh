@@ -43,7 +43,7 @@ public:
 	 @short CTOR
 	 */
 	DetectorConstruction(G4int ver = DetectorConstruction::v_HGCALEE_v6,
-			G4int mod = DetectorConstruction::m_SIMPLE_20,std::string steelThick="0.");
+			G4int mod = DetectorConstruction::m_SIMPLE_20,G4double steelThick=0.);
 
 	void buildHGCALFHE(const unsigned aVersion);
 	void buildHGCALBHE(const unsigned aVersion);
@@ -115,8 +115,8 @@ public:
 	unsigned initLayer(int aVal) {
 		 initLayer_ = aVal;
 	}
-	unsigned steelThickness(std::string aVal) {
-		 steelThick_ = stof(aVal);
+	unsigned steelThickness(G4double aVal) {
+		 steelThick_ = aVal;
 	}
 	/**
 	 @short build the detector

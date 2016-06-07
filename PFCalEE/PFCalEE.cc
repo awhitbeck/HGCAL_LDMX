@@ -43,7 +43,7 @@ int main(int argc, char** argv) {
 
 	int model = DetectorConstruction::m_FULLSECTION;
 
-	std::string steelThick = "0.";
+	G4double steelThick = 0.;
 	std::string particle   = "proton";
 	if (argc > 2)
 		version = atoi(argv[2]);
@@ -52,7 +52,7 @@ int main(int argc, char** argv) {
 	if (argc > 4)
 		particle = argv[4];
 	if (argc > 5)
-		steelThick = argv[5];
+		steelThick = std::stof(argv[5]);
 	std::cout << "-- Running version " << version << " model " << model
 			<< std::endl;
 
