@@ -30,9 +30,7 @@ using namespace std;
 //
 
 DetectorConstruction::DetectorConstruction(G4int ver, G4int mod,G4double steelThick) :
-		version_(ver), model_(mod) {
-	initLayer(0);
-	steelThickness(steelThick);
+		version_(ver), model_(mod),steelThick_(steelThick),initLayer_(0){
 	switch (version_) {
 
 	case v_HGCALEE_v6:{
@@ -49,8 +47,7 @@ DetectorConstruction::DetectorConstruction(G4int ver, G4int mod,G4double steelTh
 		initLayer(1);
 		iEle.push_back(make_pair(3*mm,"Cu"));
 		iEle.push_back(make_pair(1*mm,"Pb"));
-		std::string steelThickString = steelThick + "*mm";
-		iEle.push_back(make_pair(steelThickString,"SSteel"));
+		iEle.push_back(make_pair(steelThick*mm,"SSteel"));
 		iEle.push_back(make_pair(0.5*mm,"Cu"));
 		iEle.push_back(make_pair(0.1*mm,"Si"));
 		iEle.push_back(make_pair(0.1*mm,"Si"));
