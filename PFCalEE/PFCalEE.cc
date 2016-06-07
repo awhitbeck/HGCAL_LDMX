@@ -57,7 +57,7 @@ int main(int argc, char** argv) {
 			<< std::endl;
 
 	runManager->SetUserInitialization(
-			new DetectorConstruction(version, model, signal,steelThick));
+			new DetectorConstruction(version, model,steelThick));
 	runManager->SetUserInitialization(new PhysicsList);
 
 	// Set user action classes
@@ -65,13 +65,9 @@ int main(int argc, char** argv) {
 	runManager->SetUserAction(new EventAction);
 	runManager->SetUserAction(new SteppingAction);
 
-        if (signal) {
-            runManager->SetUserAction(new LHEPrimaryGeneratorAction(model));
-        }
-        else {
-            runManager->SetUserAction(new PrimaryGeneratorAction(model, particle));
-            runManager->Initialize(); 
-        }
+	runManager->SetUserAction(new PrimaryGeneratorAction(model, particle));
+	runManager->Initialize();
+
 	
 	// Initialize visualization
 #ifdef G4VIS_USE
