@@ -58,14 +58,22 @@ public:
 		zvtx_ = z;
 	}
 	;
+	inline double steelThick() const {
+		return steelThick_;
+	}
+	;
 
+	inline void steelThick(const double z) {
+		steelThick_ = z;
+	}
+	;
 private:
 
 	unsigned event_;
 	double xvtx_;
 	double yvtx_;
 	double zvtx_;
-
+	double steelThick_;
 ClassDef(HGCSSEvent,1)
 	;
 

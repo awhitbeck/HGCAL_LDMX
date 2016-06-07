@@ -64,11 +64,9 @@ std::vector<std::string> split(const std::string &s, char delim) {
 	return tokens;
 }
 
-PrimaryGeneratorAction::PrimaryGeneratorAction(G4int mod, bool signal,
-		std::string data) {
+PrimaryGeneratorAction::PrimaryGeneratorAction(G4int mod, std::string particleType ) {
 	model_ = mod;
-	signal_ = signal;
-	data_ = data;
+	particle_ = particleType;
 	G4int n_particle = 1;
 
 	// default generator is particle gun.
@@ -95,7 +93,7 @@ PrimaryGeneratorAction::PrimaryGeneratorAction(G4int mod, bool signal,
 	G4ParticleTable* particleTable = G4ParticleTable::GetParticleTable();
 	G4String particleName;
 	G4ParticleDefinition* particle = particleTable->FindParticle(particleName =
-			"e-");
+			particle_);
 	particleGun->SetParticleDefinition(particle);
 	particleGun->SetParticleMomentumDirection(G4ThreeVector(0., 0., 1.));
 	particleGun->SetParticleEnergy(4. * GeV);
@@ -124,9 +122,9 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent) {
 	G4String particleName;
 
 	G4ParticleDefinition* particle = particleTable->FindParticle(particleName =
-			"e-");
+			particle_);
 	particleGun->SetParticleDefinition(particle);
-	G4double et = 4.0;
+	G4double et = G4RandFlat::shoot(0.02,4.0);
 	particleGun->SetParticleEnergy(et * GeV);
 	particleGun->SetParticleMomentumDirection(G4ThreeVector(0., 0., 1.));
 

@@ -50,7 +50,7 @@ private:
 	RunAction* runAct;
 	std::vector<SamplingSection> *detector_;
 	G4int evtNb_, printModulo,initLayer;
-
+	G4double steelThick;
 	HGCSSGeometryConversion* geomConv_;
 
 	TFile *outF_;

@@ -38,6 +38,7 @@ EventAction::EventAction() {
 			<< info->model() << std::endl;
 	outF_->WriteObjectAny(info, "HGCSSInfo", "Info");
 	initLayer = ((DetectorConstruction*) G4RunManager::GetRunManager()->GetUserDetectorConstruction())->initLayer();
+	steelThick = ((DetectorConstruction*) G4RunManager::GetRunManager()->GetUserDetectorConstruction())->steelThickness();
 	//honeycomb
 	geomConv_ = new HGCSSGeometryConversion(info->model(), CELL_SIZE_X);
 	geomConv_->initialiseHoneyComb(xysize, CELL_SIZE_X);
@@ -107,6 +108,7 @@ void EventAction::EndOfEventAction(const G4Event* g4evt) {
 	event_.vtx_x(g4evt->GetPrimaryVertex(0)->GetX0());
 	event_.vtx_y(g4evt->GetPrimaryVertex(0)->GetY0());
 	event_.vtx_z(g4evt->GetPrimaryVertex(0)->GetZ0());
+	event_.steelThick(steelThick);
 
 	ssvec_.clear();
 	ssvec_.reserve(detector_->size());

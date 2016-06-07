@@ -43,7 +43,7 @@ public:
 	 @short CTOR
 	 */
 	DetectorConstruction(G4int ver = DetectorConstruction::v_HGCALEE_v6,
-			G4int mod = DetectorConstruction::m_SIMPLE_20, bool signal = false);
+			G4int mod = DetectorConstruction::m_SIMPLE_20,std::string steelThick="0.");
 
 	void buildHGCALFHE(const unsigned aVersion);
 	void buildHGCALBHE(const unsigned aVersion);
@@ -109,8 +109,14 @@ public:
 	unsigned initLayer() {
 		return initLayer_;
 	}
+	unsigned steelThickness() {
+		return steelThick_;
+	}
 	unsigned initLayer(int aVal) {
 		 initLayer_ = aVal;
+	}
+	unsigned steelThickness(std::string aVal) {
+		 steelThick_ = stof(aVal);
 	}
 	/**
 	 @short build the detector
@@ -153,7 +159,7 @@ private:
 	G4double m_z0pos;
 	G4double m_WorldSizeXY, m_WorldSizeZ;
 	G4double m_nSectors, m_sectorWidth, m_interSectorWidth;
-
+	G4double steelThick_;
 	G4VSolid* m_solidWorld;    //pointer to the solid World 
 	G4LogicalVolume* m_logicWorld;    //pointer to the logical World
 	G4VPhysicalVolume* m_physWorld;     //pointer to the physical World  

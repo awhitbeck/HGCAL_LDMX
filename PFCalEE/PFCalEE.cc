@@ -43,21 +43,21 @@ int main(int argc, char** argv) {
 
 	int model = DetectorConstruction::m_FULLSECTION;
 
-        bool signal = true;
-	std::string data = "";
+	std::string steelThick = "0.";
+	std::string particle   = "proton";
 	if (argc > 2)
 		version = atoi(argv[2]);
 	if (argc > 3)
 		model = atoi(argv[3]);
 	if (argc > 4)
-		signal = atoi(argv[4]);
+		particle = argv[4];
 	if (argc > 5)
-		data = argv[5];
+		steelThick = argv[5];
 	std::cout << "-- Running version " << version << " model " << model
 			<< std::endl;
 
 	runManager->SetUserInitialization(
-			new DetectorConstruction(version, model, signal));
+			new DetectorConstruction(version, model, signal,steelThick));
 	runManager->SetUserInitialization(new PhysicsList);
 
 	// Set user action classes
@@ -69,7 +69,7 @@ int main(int argc, char** argv) {
             runManager->SetUserAction(new LHEPrimaryGeneratorAction(model));
         }
         else {
-            runManager->SetUserAction(new PrimaryGeneratorAction(model, signal, data));
+            runManager->SetUserAction(new PrimaryGeneratorAction(model, particle));
             runManager->Initialize(); 
         }
 	
