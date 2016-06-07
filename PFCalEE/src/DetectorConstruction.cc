@@ -49,7 +49,8 @@ DetectorConstruction::DetectorConstruction(G4int ver, G4int mod,std::string stee
 		initLayer(1);
 		iEle.push_back(make_pair(3*mm,"Cu"));
 		iEle.push_back(make_pair(1*mm,"Pb"));
-		iEle.push_back(make_pair(steelThick + "*mm","SSteel"));
+		std::string steelThickString = steelThick + "*mm";
+		iEle.push_back(make_pair(steelThickString,"SSteel"));
 		iEle.push_back(make_pair(0.5*mm,"Cu"));
 		iEle.push_back(make_pair(0.1*mm,"Si"));
 		iEle.push_back(make_pair(0.1*mm,"Si"));
