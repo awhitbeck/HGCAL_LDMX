@@ -109,7 +109,7 @@ public:
 	unsigned initLayer() {
 		return initLayer_;
 	}
-	unsigned steelThickness() {
+	G4double steelThickness() {
 		return steelThick_;
 	}
 	unsigned initLayer(int aVal) {
